@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking and Table Reservations | Chow  Hut</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/CHOW HUT/images/logo.PNG">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/CHOW HUT/images/logo.PNG" alt="Chow Hut Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="takeout.html">Ordering and Takeout</a></li>
+            <li><a href="booking.html">Booking and Reservations</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="search-btn" onclick="toggleSearchPanel()" aria-label="Search">
+                <span>&#128269;</span>
+                <div id="search-dropdown" class="search-dropdown">
+                    <input type="text" placeholder="Search meals..." id="search-input" onkeyup="searchMeals(event)">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+            </button>
+            <button class="notification-btn" id="notification-btn" aria-label="View notifications">
+                <span>&#128276;</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Notification Panel -->
+    <aside class="notification-panel" id="notification-panel">
+        <div class="notification-panel-header">
+            <span>Notifications</span>
+            <button class="notification-close-btn" onclick="toggleNotificationPanel()">×</button>
+        </div>
+        <ul class="notification-list" id="notification-list">
+            <!-- Notifications will be populated here by JavaScript -->
+        </ul>
+        <div class="empty-notifications" id="empty-notifications">
+            No notifications yet
+        </div>
+    </aside>
+
+    <main class="booking-container">
+        <!-- Reservation Form -->
+        <div class="form-card" style="max-width: 500px; margin: 40px auto;">
+            <h2 style="color: var(--primary-color); margin-bottom: 25px; text-align: center;">Table Reservation</h2>
+            <form onsubmit="handleBooking(event)" id="table-reserve" autocomplete="on" >
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date & Time</label>
+                    <input type="datetime-local" id="date" placeholder="Reservation Date" required>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <select id="guests" style="cursor: pointer;">
+                        <option value="">Select guest count</option>
+                        <option value="1-2">1-2 guests</option>
+                        <option value="3-5">3-5 guests</option>
+                        <option value="6+">6+ guests</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Special Requests (Optional)</label>
+                    <textarea id="message" style="padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; font-family: 'Segoe UI', sans-serif; width: 100%; height: 100px; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" class="full-btn">Proceed to Payment</button>
+            </form>
+        </div>
+
+        <div id="tracking-box" class="card tracking-map-container" style="display:none; max-width: 600px; margin: 40px auto;">
+            <h3 style="color: var(--primary-blue); margin-bottom: 20px;">Live Delivery Tracking</h3>
+            <div class="map-area">
+                <div class="map-point user-point">
+                    <i class="fas fa-home"></i>
+                    <span class="label">You</span>
+                </div>
+                <div class="map-point rider-point" id="rider-icon">
+                    <i class="fas fa-motorcycle"></i>
+                    <span class="label">Rider</span>
+                </div>
+            </div>
+            <div class="tracking-details">
+                <p id="tracking-status">Assigning rider...</p>
+                <p>ETA: <strong id="eta-display">-- mins</strong></p>
+                <p>Distance: <strong id="dist-display">-- km</strong></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <nav class="footer-nav">
+            <div class="footer-links">
+                <a href="#">Customer Care</a>
+                <a href="mailto:chow-hut@gmail.com?subject=Customer%20%Complaint">Complaints</a>
+                <a href="adminpanel.html">Admin</a>
+            </div>
+            <div class="social-links">
+                <a href="https://facebook.com/chowhut" target="_blank" rel="noopener noreferrer" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://instagram.com/chowhut" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/chowhut" target="_blank" rel="noopener noreferrer" title="Twitter">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Chow Hut Restaurant. All Rights Reserved.</p>
+                <p>Powered by <strong>Top<span style="color: goldenrod;">Notch</span>Innovations Ltd.</strong></p>
+            </div>
+        </nav>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>

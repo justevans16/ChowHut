@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordering, Takeout and Live Tracking | Chow Hut</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/CHOW HUT/style.css">
+    <link rel="icon" type="image/png" href="/CHOW HUT/images/logo.PNG">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/CHOW HUT/images/logo.PNG" alt="Chow Hut Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="takeout.html">Ordering and Takeout</a></li>
+            <li><a href="booking.html">Booking and Reservations</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="search-btn" aria-label="Search" onclick="toggleSearchPanel()">
+                <span>&#128269;</span>
+                <div id="search-dropdown" class="search-dropdown">
+                    <input type="text" placeholder="Search meals..." id="search-input" onkeyup="searchMeals(event)">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+            </button>
+            <button class="notification-btn" id="notification-btn" aria-label="View notifications">
+                <span>&#128276;</span>
+                <span class="notification-badge" id="notification-badge"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Notification Panel -->
+    <aside class="notification-panel" id="notification-panel">
+        <div class="notification-panel-header">
+            <span>Notifications</span>
+            <button class="notification-close-btn" onclick="toggleNotificationPanel()">×</button>
+        </div>
+        <ul class="notification-list" id="notification-list">
+            <!-- Notifications will be populated here by JavaScript -->
+        </ul>
+        <div class="empty-notifications" id="empty-notifications">
+            No notifications yet
+        </div>
+    </aside>
+    
+    <main class="menu-list-container">
+        <h2 class="category-title">Place Your Order</h2>
+        <p style=" color: #666; margin-top: 1.8px; margin-bottom: 30px; font-size: 1.05rem;">Place your order from a wide range of meal categories on our menu list and track your delivery in real-time!</p>
+        
+        <section class="menu-section" style="margin-bottom: 60px;">
+            <h2 style="color: var(--primary-color); margin-bottom: 30px; text-align: center; font-size: 2rem;">Browse Our Full Menu</h2>
+            <!-- <button class="carousel-arrow left" id="hot-carousel-left" onclick="scrollCarousel('left')">❮</button> -->
+            <div id="booking-menu-display" class="menu-slider"></div>
+            <!-- <button class="carousel-arrow right" id="hot-carousel-right" onclick="scrollCarousel('right')">❯</button> -->
+        </section>
+
+        <section id="order-box" class="order-box" style="max-width:900px; margin: 10px auto 30px;">
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                
+                <label style="font-weight:700;">Place your order (Example: "A plate of Fried Rice, 2 Beef, a serving of Coleslaw.") <br /><span style="color: red; font-size: x-small;">(*For other additional meals, continue on a new line.)</span></label>
+        
+                <div style="display:flex; align-items: flex-start; gap: 12px;">
+                    <textarea id="order-text"placeholder="Place your order..." style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size:1rem; height: 120px; resize: vertical;"></textarea>
+                    <div style="width: 48px;display:flex;align-items:center;justify-content:center;">
+                        <i id="typing-icon" class="fas fa-pen-fancy typing-icon hidden" style="font-size:22px;"></i>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start;">
+                    <input id="contact-name" type="text" placeholder="Name" class="order-input">
+                    <input id="contact-email" type="email" placeholder="Email" class="order-input">
+                    <input id="contact-phone" type="tel" placeholder="Phone Number" class="order-input">
+                    <input id="contact-address" type="text" placeholder="Delivery Address" class="order-input" style="flex: 1; min-width: 200px;">
+                    <button class="order-btn" onclick="submitTextOrder()">Order Now</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <nav class="footer-nav">
+            <div class="footer-links">
+                <a href="#">Customer Care</a>
+                <a href="mailto:chow-hut@gmail.com?subject=Customer%20%Complaint">Complaints</a>
+                <a href="adminpanel.html">Admin</a>
+            </div>
+            <div class="social-links">
+                <a href="https://facebook.com/chowhut" target="_blank" rel="noopener noreferrer" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://instagram.com/chowhut" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/chowhut" target="_blank" rel="noopener noreferrer" title="Twitter">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Chow Hut Restaurant. All Rights Reserved.</p>
+                <p>Powered by <strong>Top<span style="color: goldenrod;">Notch</span>Innovations Ltd.</strong></p>
+            </div>
+        </nav>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>

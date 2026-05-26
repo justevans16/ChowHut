@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Chow Hut</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/CHOW HUT/style.css">
+    <style>.hidden{display: none!important;}</style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="" alt="Chow Hut Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="takeout.html">Ordering and Takeout</a></li>
+        </ul>
+    </nav>
+
+    <div class="login-container">
+        <h2 class="category-title">
+            <i class="fas fa-lock" style="margin-right: 10px;"></i>Admin Dashboard
+        </h2>
+        <p style="background: #e8f4f8; color: #000000c5; padding: 15px; border-radius: 8px; border-left: 6px solid rgb(3, 65, 13); margin-bottom: 30px;">
+            <strong>Welcome, Restaurant Manager!</strong> Toggle meal availability below. Changes are saved automatically and affect the menu immediately.
+        </p>
+
+        <div id="admin-login" style="background: rgba(57, 61, 20, 0.568);padding:20px;border-radius:8px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <h3 style="color: #000000c5; margin-bottom:10px;">Admin Login</h3>
+            <form onsubmit="authenticateAdmin(event)">
+                <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+                    <input id="admin-email" type="email" placeholder="Email" required style="padding:8px;border-radius:4px;border:1px solid #ddd;">
+                    <input id="admin-tag" type="text" placeholder="Tag name" required style="padding:8px;border-radius:4px;border:1px solid #ddd;">
+                    <input id="admin-password" type="password" placeholder="Password" required style="padding:8px;border-radius:4px;border:1px solid #ddd;">
+                    <button class="admin-btn" type="submit">Login</button>
+                </div>
+                <div id="admin-error" style="color:#c00;margin-top:8px;min-height:18px;"></div>
+            </form>
+        </div>
+
+        <div id="admin-panel"></div>
+
+        <div id="admin-controls" class="hidden" style="background: white; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="color: var(--primary-color); margin-bottom: 15px;">Management Options</h3>
+            <button class="btn" onclick="resetAvailability()" style="margin-right: 10px;">
+                <i class="fas fa-redo"></i> Reset to Default
+            </button>
+            <button class="btn" onclick="exportData()" style="background: #17a2b8; margin-right: 10px;">
+                <i class="fas fa-download"></i> Export Data
+            </button>
+            <button class="btn" onclick="goBack()" style="background: #6c757d;">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+            <button class="btn" onclick="logoutAdmin()" style="background:#ff6b6b;margin-left:10px;">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2026 Chow Hut Restaurant. All Rights Reserved.</p>
+        <p>Powered by <strong>Top<span style="color: goldenrod;">Notch</span>Innovations Ltd.</strong></p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        function resetAvailability() {
+            if (confirm('Are you sure you want to reset all items to available? This action cannot be undone.')) {
+                localStorage.removeItem('menuAvailability');
+                location.reload();
+            }
+        }
+
+        function exportData() {
+            const availability = localStorage.getItem('menuAvailability');
+            const dataStr = availability || '{}';
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'chow-hut-menu-availability.json';
+            link.click();
+            alert('Menu availability data exported successfully!');
+        }
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
