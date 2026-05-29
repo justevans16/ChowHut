@@ -261,7 +261,7 @@ document.addEventListener('keydown', (event) => {
 const menuData = {
     "Main Meals" : [
         {mealName: "Jollof Rice", price: "₦1,500", available: true,  image: 'images/jollof rice.png' },
-        {mealName: "Fried Rice", price: "₦1,500", available: true, image: 'images/fried rice.png' },
+        {mealName: "Fried Rice", price: "₦1,500", available: true, image: 'images/fried rice 1.png' },
         {mealName: "Jollof Rice", price: "₦1,500", available: true,  image: 'images/jollof rice.png' },
         {mealName: "White Rice", price: "₦1,000", available: true, image: 'images/white rice.png' },
         {mealName: "White Rice and Egg Sauce", price: "₦1,500", available: true, image: 'images/white rice and egg sauce.png' },
