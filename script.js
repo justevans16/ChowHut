@@ -85,7 +85,7 @@ function searchMeals(event) {
         resultsContainer.innerHTML = '<div style="padding: 8px; color: #999; text-align: center; font-size: 0.9rem;">No meals found</div>';
     } else {
         resultsContainer.innerHTML = results.map(item => `
-            <div class="search-result-item" onclick="window.location.href='/CHOW HUT/pages/takeout.html'">
+            <div class="search-result-item" onclick="window.location.href='takeout.html'">
                 <div class="search-result-name">${item.mealName || item.name} <span style="font-weight: 400; color: #666; font-size: 0.85rem;">- ${item.category}</span></div>
                 <div class="search-result-status ${item.available ? 'search-result-available' : 'search-result-unavailable'}" style="font-size: 0.8rem;">
                     ${item.available ? '✓ Available' : '✗ Out of Stock'}
@@ -148,10 +148,15 @@ const orderNotificationSystem = {
             const timeStr = date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
 
             li.innerHTML = `
-                <div style="cursor: pointer;" onclick="orderNotificationSystem.markAsRead(${notif.id})">
-                    <strong>${notif.title}</strong>
-                    <p style="margin: 5px 0 0 0; color: #666; font-size: 0.9rem;">${notif.message}</p>
-                    <div class="notification-item-time">${timeStr}</div>
+                <div style="cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;" onclick="orderNotificationSystem.showNotificationDetail(${notif.id})">
+                    <div style="flex: 1;">
+                        <strong>${notif.title}</strong>
+                        <p style="margin: 5px 0 0 0; color: #666; font-size: 0.9rem;">${notif.message}</p>
+                        <div class="notification-item-time">${timeStr}</div>
+                    </div>
+                    <div style="padding-top: 2px;">
+                        <i class="fas fa-chevron-right" style="color: #999; font-size: 0.8rem;"></i>
+                    </div>
                 </div>
             `;
             notificationList.appendChild(li);
@@ -165,6 +170,49 @@ const orderNotificationSystem = {
             localStorage.setItem('orderNotifications', JSON.stringify(this.notifications));
             this.updateNotificationUI();
         }
+    },
+
+    deleteNotification(id) {
+        this.notifications = this.notifications.filter(n => n.id !== id);
+        localStorage.setItem('orderNotifications', JSON.stringify(this.notifications));
+        this.updateNotificationUI();
+        closeNotificationDetail();
+    },
+
+    showNotificationDetail(id) {
+        const notif = this.notifications.find(n => n.id === id);
+        if (notif) {
+            let detail = document.getElementById('notification-detail');
+            if (!detail) {
+                detail = document.createElement('div');
+                detail.id = 'notification-detail';
+                detail.className = 'notification-detail-modal';
+                document.body.appendChild(detail);
+            }
+            const date = new Date(notif.timestamp);
+            const dateStr = date.toLocaleString();
+            detail.innerHTML = `
+                <div class="notification-detail-content">
+                    <button class="notification-detail-close" onclick="closeNotificationDetail()">×</button>
+                    <h2>${notif.title}</h2>
+                    <div class="notification-detail-body">
+                        <p><strong>Message:</strong></p>
+                        <p style="background-color: #f5f5f5; padding: 12px; border-radius: 8px; border-left: 4px solid var(--primary-color);">${notif.message}</p>
+                        <p><strong>Date & Time:</strong></p>
+                        <p>${dateStr}</p>
+                        <p><strong>Status:</strong> <span style="color: ${notif.read ? '#666' : 'var(--primary-color)'}; font-weight: 600;">${notif.read ? 'Read' : 'Unread'}</span></p>
+                    </div>
+                    <div class="notification-detail-actions">
+                        <button class="notification-detail-btn delete-btn" onclick="orderNotificationSystem.deleteNotification(${notif.id})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                        <button class="notification-detail-btn close-btn" onclick="closeNotificationDetail()">Close</button>
+                    </div>
+                </div>
+            `;
+            detail.classList.add('active');
+            this.markAsRead(id);
+        }
     }
 };
 
@@ -174,6 +222,16 @@ function toggleNotificationPanel() {
     if (notificationPanel) {
         notificationPanel.classList.toggle('active');
         orderNotificationSystem.updateNotificationUI();
+    }
+}
+
+function closeNotificationDetail() {
+    const detail = document.getElementById('notification-detail');
+    if (detail) {
+        detail.classList.remove('active');
+        setTimeout(() => {
+            detail.innerHTML = '';
+        }, 300);
     }
 }
 
@@ -202,50 +260,50 @@ document.addEventListener('keydown', (event) => {
 
 const menuData = {
     "Main Meals" : [
-        {mealName: "Jollof Rice", price: "₦1,500", available: true,  image: '/CHOW HUT/images/jollof rice.png' },
-        {mealName: "Fried Rice", price: "₦1,500", available: true, image: '/CHOW HUT/images/fried rice.png' },
-        {mealName: "White Rice", price: "₦1,000", available: true, image: '/CHOW HUT/images/white rice.png' },
-        {mealName: "White Rice and Egg Sauce", price: "₦1,500", available: true, image: '/CHOW HUT/images/white rice and egg sauce.png' },
-        {mealName: "White Rice and Veggie Sauce", price: "₦1,500", available: true, image: '/CHOW HUT/images/white rice and veggie sauce.png' },
-        {mealName: "Stir Fry Spaghetti", price: "₦1,500", available: true, image: '/CHOW HUT/images/stir fry spaghetti.png' },
+        {mealName: "Jollof Rice", price: "₦1,500", available: true,  image: 'images/jollof rice.png' },
+        {mealName: "Fried Rice", price: "₦1,500", available: true, image: 'images/fried rice.png' },
+        {mealName: "Jollof Rice", price: "₦1,500", available: true,  image: 'images/jollof rice.png' },
+        {mealName: "White Rice", price: "₦1,000", available: true, image: 'images/white rice.png' },
+        {mealName: "White Rice and Egg Sauce", price: "₦1,500", available: true, image: 'images/white rice and egg sauce.png' },
+        {mealName: "White Rice and Veggie Sauce", price: "₦1,500", available: true, image: 'images/white rice and veggie sauce.png' },
+        {mealName: "Stir Fry Spaghetti", price: "₦1,500", available: true, image: 'images/stir fry spaghetti.png' },
     ],
     "Soups" : [
-        {mealName: "Egusi Soup", price: "₦1,000", available: true, image: '/CHOW HUT/images/egusi soup.png' },
-        {mealName: "Ogbono Soup", price: "₦1,000", available: true, image: '/CHOW HUT/images/ogbono soup.png' },
-        {mealName: "Vegetable Soup", price: "₦1,500", available: true, image: '/CHOW HUT/images/vegetable soup.png' },
-        {mealName: "Oha Soup", price: "₦1,000", available: true, image: '/CHOW HUT/images/oha soup.png' },
+        {mealName: "Egusi Soup", price: "₦1,000", available: true, image: 'images/egusi soup.png' },
+        {mealName: "Ogbono Soup", price: "₦1,000", available: true, image: 'images/ogbono soup.png' },
+        {mealName: "Vegetable Soup", price: "₦1,500", available: true, image: 'images/vegetable soup.png' },
+        {mealName: "Oha Soup", price: "₦1,000", available: true, image: 'images/oha soup.png' },
     ],
     "Swallows" : [
-        {mealName: "Eba", price: "₦500", available: true, image: '/CHOW HUT/images/eba.png' },
-        {mealName: "Fufu", price: "₦500", available: true, image: '/CHOW HUT/images/fufu.png' },
-        {mealName: "Pounded yam", price: "₦700", available: true, image: '/CHOW HUT/images/pounded yam.png' },
-        {mealName: "Semo", price: "₦600", available: true, image: '/CHOW HUT/images/semo.png' },
-        {mealName: "Amala", price: "₦600", available: true, image: '/CHOW HUT/images/amala.png' },
+        {mealName: "Eba", price: "₦500", available: true, image: 'images/eba.png' },
+        {mealName: "Fufu", price: "₦500", available: true, image: 'images/fufu.png' },
+        {mealName: "Pounded yam", price: "₦700", available: true, image: 'images/pounded yam.png' },
+        {mealName: "Semo", price: "₦600", available: true, image: 'images/semo.png' },
+        {mealName: "Amala", price: "₦600", available: true, image: 'images/amala.png' },
     ],
     "Proteins": [
-        {mealName: "Beef", price: "₦500", available: true, image: '/CHOW HUT/images/beef.png' },
-        {mealName: "Goat Meat", price: "₦800", available: true, image: '/CHOW HUT/images/goat meat.png' },
-        {mealName: "Egg", price: "₦300", available: true, image: '/CHOW HUT/images/egg.png' },
-        {mealName: "Chicken", price: "₦1,000", available: true, image: '/CHOW HUT/images/chicken.png' },
-        {mealName: "Turkey", price: "₦1,500", available: true, image: '/CHOW HUT/images/turkey.png' },
-        {mealName: "Fish", price: "₦800", available: true, image: '/CHOW HUT/images/fish.png' },
+        {mealName: "Beef", price: "₦500", available: true, image: 'images/beef.png' },
+        {mealName: "Goat Meat", price: "₦800", available: true, image: 'images/goat meat.png' },
+        {mealName: "Egg", price: "₦300", available: true, image: 'images/egg.png' },
+        {mealName: "Chicken", price: "₦1,000", available: true, image: 'images/chicken.png' },
+        {mealName: "Turkey", price: "₦1,500", available: true, image: 'images/turkey.png' },
+        {mealName: "Fish", price: "₦800", available: true, image: 'images/fish.png' },
     ],
     "Side Meals": [
-        {mealName: "Coleslaw (big)", price: "₦600", available: true, image: '/CHOW HUT/images/coleslaw (big).png' },
-        {mealName: "Coleslaw (small)", price: "₦300", available: true, image: '/CHOW HUT/images/coleslaw (small).png' },
-        {mealName: "Fried Plantain (per portion)", price: "₦200", available: true, image: '/CHOW HUT/images/fried plantain (per portion).png' }
+        {mealName: "Coleslaw (big)", price: "₦600", available: true, image: 'images/coleslaw (big).png' },
+        {mealName: "Coleslaw (small)", price: "₦300", available: true, image: 'images/coleslaw (small).png' },
+        {mealName: "Fried Plantain (per portion)", price: "₦200", available: true, image: 'images/fried plantain (per portion).png' }
     ],
     "Snacks" : [
-        {mealName: "Chicken pie", price: "₦1,500", available: true, image: '/CHOW HUT/images/chicken pie.png' },
-        {mealName: "Meat pie", price: "₦1,000", available: true, image: '/CHOW HUT/images/meat pie.png' },
-        {mealName: "Chicken and Chips with ketchup", price: "₦3,000", available: true, image: '/CHOW HUT/images/chicken and chips with ketchup.png' },
-        {mealName: "Chicken and Chips", price: "₦2,500", available: true, image: '/CHOW HUT/images/chicken and chips.png' },
+        {mealName: "Chicken pie", price: "₦1,500", available: true, image: 'images/chicken pie.png' },
+        {mealName: "Meat pie", price: "₦1,000", available: true, image: 'images/meat pie.png' },
+        {mealName: "Chicken and Chips with ketchup", price: "₦3,000", available: true, image: 'images/chicken and chips with ketchup.png' },
+        {mealName: "Chicken and Chips", price: "₦2,500", available: true, image: 'images/chicken and chips.png' },
     ],
     "Drinks" : [
-       {mealName: "Pet 50cl", price: "₦650", available: true, image: '/CHOW HUT/images/pet 50cl.png' },
-       {mealName: "Pet 35cl", price: "₦350", available: true, image: '/CHOW HUT/images/pet 35cl.png' },
-       {mealName: "Chivita Exotic", price: "₦1,600", available: true, image: '/CHOW HUT/images/Chi Exotic.png' },
-       {}
+       {mealName: "Pet 50cl", price: "₦650", available: true, image: 'images/pet 50cl.png' },
+       {mealName: "Pet 35cl", price: "₦350", available: true, image: 'images/pet 35cl.png' },
+       {mealName: "Chivita Exotic", price: "₦1,600", available: true, image: 'images/Chi Exotic.png' }
     ],
     "Specials": [
         {mealName: "Thursday: Ewa Agoyin & Bread (7am-2pm)", price: "₦1,500", available: true, special: "thursday" },
@@ -255,18 +313,45 @@ const menuData = {
 };
 
 
+// Cart management functions
+function getCart() {
+    const saved = localStorage.getItem('cart');
+    return saved ? JSON.parse(saved) : [];
+}
+
+function updateCartCount() {
+    const cart = getCart();
+    const badge = document.getElementById('notification-badge');
+    if (badge) {
+        if (cart.length > 0) {
+            badge.textContent = cart.length;
+            badge.classList.add('show');
+        } else {
+            badge.classList.remove('show');
+        }
+    }
+}
+
+function addToCart(item) {
+    const cart = getCart();
+    cart.push(item);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+}
+
 const hotPicksData = [
-    { name: "Double Combo", items: ["Jollof Rice", "Fried Rice", "Plantain", "Chicken", "Coleslaw (small)"], basePrice: 4200, image: '/CHOW HUT/images/double combo.png' },
-    {name: "ODG Combo", items: ["Jollof Rice", "Fried Rice", "Turkey", "Coleslaw (big)", "Chivita Exotic"], basePrice: 5800, image: '/CHOW HUT/images/ODGCOMBO.png' },
-    {name: "SnackTime", items: ["Chicken and Chips with ketchup", "Coke 50cl"], basePrice: 3800, image: '/CHOW HUT/images/SnackTime.png' },
-    { name: "City-Villa", items: ["2 Wraps of Fufu", "Egusi", "Beef"], basePrice: 3500, image: '/CHOW HUT/images/city-villa.png' },
-    { name: "Quick Office Lunch", items: ["Fried Rice", "2 pieces of Beef", "Fried Plantain (per portion)"], basePrice: 4200, image: '/CHOW HUT/images/quick office lunch.png' },
-    { name: "Onye Eze", items: ["Oha Soup", "Pounded yam", "Fish", "2 pieces of Beef"], basePrice: 8000, image: '/CHOW HUT/images/Onye Eze.png' },
-    { name: "Party Jollof Pack", items: ["Jollof Rice", "Coleslaw (big)", "Chicken", "Fanta 50cl"], basePrice: 9000, image: '/CHOW HUT/IMAGES/party-jollof-pack.png' },
-    { name: "Weekend Breakfast", items: ["Ewa Agoyin & Bread", "Egg", "Coke 50cl"], basePrice: 3500, image: '/CHOW HUT/images/weekend-breakfast.png' },
-    { name: "Hearty Swallow Meal", items: ["Egusi Soup", "Eba", "Goat Meat"], basePrice: 3000, image: "" },
-    { name: "Seafood Delight", items: ["White Rice", "Vegetable Soup", "Fish (2 pieces)"], basePrice: 7200, image: "" },
-    { name: "Oganla", items: ["Vegetable Soup", "2 wraps of Semo","Goat Meat"], basePrice: 5500, image: "" },
+    { name: "Double Combo", items: ["Jollof Rice", "Fried Rice", "Plantain", "Chicken", "Coleslaw (small)"], basePrice: 4200, image: 'images/double combo.png' },
+    {name: "ODG Combo", items: ["Jollof Rice", "Fried Rice", "Turkey", "Coleslaw (big)", "Chivita Exotic"], basePrice: 5800, image: 'images/ODGCOMBO.png' },
+    {name: "SnackTime", items: ["Chicken and Chips with ketchup", "Coke 50cl"], basePrice: 3800, image: 'images/SnackTime.png' },
+    { name: "City-Villa", items: ["2 Wraps of Fufu", "Egusi", "Beef"], basePrice: 3500, image: 'images/city-villa.png' },
+    { name: "Quick Office Lunch", items: ["Fried Rice", "2 pieces of Beef", "Fried Plantain (per portion)"], basePrice: 4200, image: 'images/quick office lunch.png' },
+    { name: "Onye Eze", items: ["Oha Soup", "Pounded yam", "Fish", "2 pieces of Beef"], basePrice: 8000, image: 'images/Onye Eze.png' },
+    { name: "Party Jollof Pack", items: ["Jollof Rice", "Coleslaw (big)", "Chicken", "Fanta 50cl"], basePrice: 9000, image: 'images/party-jollof-pack.png' },
+    { name: "Weekend Breakfast", items: ["Ewa Agoyin & Bread", "Egg", "Coke 50cl"], basePrice: 3500, image: 'images/weekend-breakfast.png' },
+    { name: "Hearty Swallow Meal", items: ["Egusi Soup", "Eba", "Goat Meat"], basePrice: 3000, image: 'images/hearty-swallow.png' },
+    { name: "Spag Delight", items: ["Stir Fry Spaghetti", "Turkey", "Chivita Exotic"], basePrice: 7200, image: 'images/Spag delight.png' },
+    { name: "Oganla", items: ["Ewedu, Gbegiri and Stew", "2 wraps of Amaa","Goat Meat and Assorted Meat"], basePrice: 5500, image: 'images/Oganla.png' },
+    { name: "Chief's Feast", items: ["Vegetable Soup", "2 wraps ","Beef, Goat Meat and Ponmo"], basePrice: 4000, image: 'images/Chiefs Feast.png' },
 ];
 
 // Calculate prices with 500 reduction and format
@@ -306,7 +391,13 @@ if (carousel) {
 
 // Carousel scroll function
 function scrollCarousel(direction) {
-    const carousel = document.getElementById('hot-menu-carousel');
+    // Support multiple carousel containers: hot picks, takeout menu, booking menu
+    const ids = ['hot-menu-carousel', 'takeout-menu', 'booking-menu-display'];
+    let carousel = null;
+    for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el) { carousel = el; break; }
+    }
     if (!carousel) return;
 
     const scrollAmount = 320; // Item width + gap
@@ -317,7 +408,7 @@ function scrollCarousel(direction) {
     }
 }
 
-// Auto-scroll carousel every 4 seconds
+// Auto-scroll carousel every 2.5 seconds (faster scrolling)
 let scrollAmount = 0;
 const step = 270;
 if (carousel) {
@@ -332,7 +423,7 @@ if (carousel) {
             left: scrollAmount,
             behavior: 'smooth'
         });
-    }, 4000);
+    }, 2500);
 }
 
 //Admin Credentials
@@ -529,32 +620,38 @@ function displayMenuCarousel(containerId) {
     // Determine which categories to show
     const categoriesToShow = ['Main Meals', 'Soups', 'Swallows', 'Proteins', 'Side Meals', 'Snacks', 'Drinks'];
     
-    let html = `<div class="menu-slider-track">`;
-
+    let items = [];
+    
     for (const category of categoriesToShow) {
-        const items = menuData[category] || [];
-        
-        items.forEach((item) => {
-            if (item && item.mealName && item.available) {
-                const mealName = item.mealName;
-                const price = item.price;
-                const placeholderImage = `https://via.placeholder.com/280x180?text=${encodeURIComponent(mealName)}`;
-
-                html += `
-                    <div class="menu-slider-item">
-                        <div class="menu-item-image" style="background-image: url('${placeholderImage}')"></div>
-                        <div class="menu-item-info">
-                            <div class="menu-item-name">${mealName}</div>
-                            <div class="menu-item-price">${price}</div>
-                        </div>
-                    </div>
-                `;
-            }
-        });
+        const menuItems = menuData[category] || [];
+        items = items.concat(menuItems.filter(item => item && item.mealName && item.available));
     }
+    
+    if (items.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: #999; padding: 40px;">No meals available</p>';
+        return;
+    }
+    
+    let html = `<div class="menu-slider-track">`;
+    
+    items.forEach((item) => {
+        const mealName = item.mealName;
+        const price = item.price;
+        const imageUrl = item.image || `https://via.placeholder.com/280x180?text=${encodeURIComponent(mealName)}`;
+
+        html += `
+            <div class="menu-slider-item">
+                <div class="menu-item-image" style="background-image: url('${imageUrl}')"></div>
+                <div class="menu-item-info">
+                    <div class="menu-item-name">${mealName}</div>
+                    <div class="menu-item-price">${price}</div>
+                </div>
+            </div>
+        `;
+    });
 
     html += `</div>`;
-    container.innerHTML = html || '<p style="text-align: center; color: #999; padding: 40px;">No meals available</p>';
+    container.innerHTML = html;
 }
 
 // Display menu in booking page
@@ -572,19 +669,18 @@ function renderAdminPanel() {
         document.getElementById('admin-controls')?.classList.add('hidden');
         return;
     }
-    admin.innerHTML = `<h2 style="color: var(--primary-blue); margin-bottom: 20px;">Admin Panel - Menu Management</h2>`;
+    admin.innerHTML = `<h2 style="color: var(--primary-color); margin-bottom: 20px;">Admin Panel - Menu Management</h2>`;
     document.getElementById('admin-controls')?.classList.remove('hidden');
     for (const [category, items] of Object.entries(menuData)) {
         let section = `<div class="admin-category">
-            <h3>${category}</h3>
-            <div class="admin-items">`;
+            <div class="admin-category-title">${category}</div>
+            <div class="admin-item-list">`;
         items.forEach((item, idx) => {
             const checked = item.available ? 'checked' : '';
             section += `<div class="admin-item">
-                <label>
-                    <input type="checkbox" ${checked} onchange="toggleItemAvailability('${category}', ${idx})">
-                    <span>${item.name} - ${item.price}</span>
-                </label>
+                <input type="checkbox" ${checked} onchange="toggleItemAvailability('${category}', ${idx})">
+                <label>${item.mealName}</label>
+                <span class="admin-item-price">${item.price}</span>
             </div>`;
         });
         section += `</div></div>`;

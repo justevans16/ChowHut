@@ -6,20 +6,39 @@
     <title>Payment | Chow Hut</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="/CHOW HUT/style.css">
-    <link rel="icon" type="image/png" href="/CHOW HUT/images/logo.PNG">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/logo.PNG">
 </head>
 <body>
-    <nav class="payment-navbar" style="position: fixed; top: 0; height: 80px; width: 100%; background: var(--primary-color); z-index: 1000; border-bottom: 3px solid var(--green-gold); display: flex; justify-content: space-between; align-items: center; padding: 0 5%;">
+    <nav class="navbar">
         <div class="logo">
-            <img src="/CHOW HUT/images/logo.PNG" alt="Chow Hut Logo">
+            <img src="images/logo9.PNG" alt="Chow Hut Logo">
         </div>
-        <ul class="payment-navlinks" style="display: flex; list-style: none; gap: 30px;">
+        <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="takeout.html">Ordering and Takeout</a></li>
             <li><a href="booking.html">Booking and Reservations</a></li>
         </ul>
+        <div class="nav-actions">
+            <button class="notification-btn" id="notification-btn" aria-label="View notifications">
+                <span>&#128276;</span>
+                <span class="notification-badge" id="notification-badge"></span>
+            </button>
+        </div>
     </nav>
+
+    <aside class="notification-panel" id="notification-panel">
+        <div class="notification-panel-header">
+            <span>Notifications</span>
+            <button class="notification-close-btn" onclick="toggleNotificationPanel()">×</button>
+        </div>
+        <ul class="notification-list" id="notification-list">
+             <!-- Notifications will be populated here by JavaScript -->
+        </ul>
+        <div class="empty-notifications" id="empty-notifications">
+            No notifications yet
+        </div>
+    </aside>
 
     <section class="payment-container" style="padding: 50px 8%;">
         <div class="payment-card" style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); text-align: center; transition: 0.15s; border: 2px solid transparent;">
@@ -47,7 +66,7 @@
         </div>
     </section>
 
-    <script src="../script.js"></script>
+    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const order = JSON.parse(localStorage.getItem('latestOrder')) || {};
@@ -66,7 +85,7 @@
         
         function handlePaymentConfirmation() {
             localStorage.setItem('showTracking', 'true')
-            alert('Your order has been confirmed. You will receive a confirmation email shortly. You will be redirected to live tracking.');
+            alert('Your order has been confirmed. You will receive a confirmation email shortly.');
             window.location.href = 'takeout.html';
         }
     </script>

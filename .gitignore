@@ -1,0 +1,28 @@
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependencies (if npm is used later)
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+build/
+
+# Local testing
+*.local
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*

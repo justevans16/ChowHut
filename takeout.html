@@ -6,13 +6,13 @@
     <title>Ordering, Takeout and Live Tracking | Chow Hut</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="/CHOW HUT/style.css">
-    <link rel="icon" type="image/png" href="/CHOW HUT/images/logo.PNG">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/logo.PNG">
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="/CHOW HUT/images/logo.PNG" alt="Chow Hut Logo">
+            <img src="images/logo9.PNG" alt="Chow Hut Logo">
         </div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
@@ -54,61 +54,60 @@
         
         <section class="menu-section" style="margin-bottom: 60px;">
             <h2 style="color: var(--primary-color); margin-bottom: 30px; text-align: center; font-size: 2rem;">Browse Our Full Menu</h2>
-            <!-- <button class="carousel-arrow left" id="hot-carousel-left" onclick="scrollCarousel('left')">❮</button> -->
-            <div id="booking-menu-display" class="menu-slider"></div>
-            <!-- <button class="carousel-arrow right" id="hot-carousel-right" onclick="scrollCarousel('right')">❯</button> -->
+            <button class="carousel-arrow left" id="takeout-carousel-left" onclick="scrollCarousel('left')">❮</button>
+            <div id="takeout-menu" class="menu-slider"></div>
+            <button class="carousel-arrow right" id="takeout-carousel-right" onclick="scrollCarousel('right')">❯</button>
         </section>
 
         <section id="order-box" class="order-box" style="max-width:900px; margin: 10px auto 30px;">
-            <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
                 
                 <label style="font-weight:700;">Place your order (Example: "A plate of Fried Rice, 2 Beef, a serving of Coleslaw.") <br /><span style="color: red; font-size: x-small;">(*For other additional meals, continue on a new line.)</span></label>
         
                 <div style="display:flex; align-items: flex-start; gap: 12px;">
-                    <textarea id="order-text"placeholder="Place your order..." style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size:1rem; height: 120px; resize: vertical;"></textarea>
+                    <textarea id="order-text" placeholder="Place your order..." style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size:1rem; height: 120px; resize: vertical;" tabindex="1"></textarea>
                     <div style="width: 48px;display:flex;align-items:center;justify-content:center;">
                         <i id="typing-icon" class="fas fa-pen-fancy typing-icon hidden" style="font-size:22px;"></i>
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start;">
-                    <input id="contact-name" type="text" placeholder="Name" class="order-input">
-                    <input id="contact-email" type="email" placeholder="Email" class="order-input">
-                    <input id="contact-phone" type="tel" placeholder="Phone Number" class="order-input">
-                    <input id="contact-address" type="text" placeholder="Delivery Address" class="order-input" style="flex: 1; min-width: 200px;">
-                    <button class="order-btn" onclick="submitTextOrder()">Order Now</button>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: flex-start;">
+                    <input id="contact-name" type="text" placeholder="Name" class="order-input" tabindex="2" style="grid-column: 1;">
+                    <input id="contact-email" type="email" placeholder="Email" class="order-input" tabindex="3" style="grid-column: 2;">
+                    <input id="contact-phone" type="tel" placeholder="Phone Number" class="order-input" tabindex="4" style="grid-column: 1;">
+                    <input id="contact-address" type="text" placeholder="Delivery Address" class="order-input" tabindex="5" style="grid-column: 2;">
                 </div>
+                
+                <button class="order-btn" onclick="submitTextOrder()" tabindex="6" style="align-self: flex-end;">Order Now</button>
             </div>
         </section>
     </main>
 
     <footer>
         <nav class="footer-nav">
-            <div class="footer-links">
-                <a href="#">Customer Care</a>
-                <a href="mailto:chow-hut@gmail.com?subject=Customer%20%Complaint">Complaints</a>
-                <a href="adminpanel.html">Admin</a>
-            </div>
             <div class="social-links">
-                <a href="https://facebook.com/chowhut" target="_blank" rel="noopener noreferrer" title="Facebook">
+                <a href="https://facebook.com/chowhut" target="_blank" rel="noopener noreferrer" title="Facebook" style="color: white;">
                     <i class="fab fa-facebook"></i>
                 </a>
-                <a href="https://instagram.com/chowhut" target="_blank" rel="noopener noreferrer" title="Instagram">
+                <a href="https://instagram.com/chowhut" target="_blank" rel="noopener noreferrer" title="Instagram" style="color: white;">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://twitter.com/chowhut" target="_blank" rel="noopener noreferrer" title="Twitter">
+                <a href="https://x.com/chowhut" target="_blank" rel="noopener noreferrer" title="X" style="color: white;">
                     <i class="fab fa-x-twitter"></i>
                 </a>
-                <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer" title="WhatsApp" style="color: white;">
                     <i class="fab fa-whatsapp"></i>
                 </a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Chow Hut Restaurant. All Rights Reserved.</p>
-                <p>Powered by <strong>Top<span style="color: goldenrod;">Notch</span>Innovations Ltd.</strong></p>
+            <div class="footer-info">
+                <a href="tel:+2349012228848" style="color: white; font-weight: bold;">Customer Care</a>
+                <a href="mailto:complaints@chowhut.com" style="color: white; font-weight: bold;">Complaints</a>
+                <a href="adminpanel.html" style="color: white; font-weight: bold;">Admin</a>
             </div>
         </nav>
+        <p class="copyright">© 2026 Chow Hut Restaurant. All Rights Reserved.</p>
+        <p>Powered by <strong>Top<span style="color: goldenrod;">Notch</span>Innovations Ltd.</strong></p>
     </footer>
-    <script src="../script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
