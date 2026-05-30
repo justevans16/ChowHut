@@ -1164,9 +1164,12 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     }
 
     .navbar {
-        padding: 0 12px;
-        height: 70px;
+        padding: 0 10px;
+        height: auto;
+        min-height: 70px;
+        flex-wrap: wrap;
         justify-content: space-between;
+        gap: 10px;
     }
 
     .logo img {
@@ -1175,33 +1178,41 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     }
 
     .navbar > div:nth-child(2) {
-        margin: 0 12px;
+        margin: 0;
         flex: 1;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
+        min-width: 100%;
+        order: 3;
+        padding: 8px 0;
+        border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     .nav-links {
-        gap: 15px;
-        font-size: 0.9rem;
+        gap: 10px;
+        font-size: 0.85rem;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
     }
 
     .nav-links a {
-        font-size: 0.9rem;
-        padding: 5px 10px;
+        font-size: 0.85rem;
+        padding: 4px 8px;
+        white-space: nowrap;
     }
 
     .nav-actions {
-        gap: 15px;
+        gap: 12px;
         display: flex;
         align-items: center;
+        order: 2;
     }
 
     .search-btn, .notification-btn {
-        font-size: 1.3rem;
-        padding: 5px;
+        font-size: 1.2rem;
+        padding: 6px;
     }
 
     .notification-panel {
@@ -1331,10 +1342,17 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 65px 0 0 0;
+    }
+
     .navbar {
-        height: 60px;
+        height: auto;
+        min-height: 65px;
         padding: 0 8px;
+        flex-wrap: wrap;
         justify-content: space-between;
+        gap: 8px;
     }
 
     .logo img {
@@ -1343,36 +1361,42 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     }
 
     .navbar > div:nth-child(2) {
-        margin: 0 8px;
+        margin: 0;
         flex: 1;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
+        min-width: 100%;
+        order: 3;
+        padding: 8px 0;
+        border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     .nav-links {
-        gap: 12px;
-        font-size: 0.8rem;
+        gap: 8px;
+        font-size: 0.75rem;
         display: flex;
-        justify-content: center;
-        flex-wrap: nowrap;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
     }
 
     .nav-links a {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         white-space: nowrap;
-        padding: 4px 6px;
+        padding: 3px 5px;
     }
 
     .nav-actions {
-        gap: 10px;
+        gap: 8px;
         display: flex;
         align-items: center;
         flex-shrink: 0;
+        order: 2;
     }
 
     .search-btn, .notification-btn {
-        font-size: 1.2rem;
-        padding: 4px;
+        font-size: 1.15rem;
+        padding: 5px;
     }
 
     .hero {
@@ -1468,13 +1492,16 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
 /* Extra Small Devices - 425px */
 @media (max-width: 425px) {
     body {
-        padding: 55px 0 0 0;
+        padding: 60px 0 0 0;
     }
 
     .navbar {
-        height: 55px;
+        height: auto;
+        min-height: 60px;
         padding: 0 6px;
+        flex-wrap: wrap;
         justify-content: space-between;
+        gap: 6px;
     }
 
     .logo img {
@@ -1483,42 +1510,50 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     }
 
     .navbar > div:nth-child(2) {
-        margin: 0 6px;
+        margin: 0;
         flex: 1;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
+        min-width: 100%;
+        order: 3;
+        padding: 6px 0;
+        border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     .nav-links {
-        gap: 8px;
-        font-size: 0.75rem;
+        gap: 6px;
+        font-size: 0.7rem;
         display: flex;
-        justify-content: center;
-        flex-wrap: nowrap;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
+        align-items: center;
     }
 
     .nav-links a {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         white-space: nowrap;
-        padding: 3px 5px;
+        padding: 2px 4px;
+        word-break: break-word;
     }
 
     .nav-actions {
-        gap: 8px;
+        gap: 6px;
         display: flex;
         align-items: center;
         flex-shrink: 0;
+        order: 2;
     }
 
     .search-btn, .notification-btn {
-        font-size: 1.1rem;
-        padding: 3px;
+        font-size: 1.05rem;
+        padding: 4px;
     }
 
     .notification-panel {
         width: 100%;
-        top: 55px;
-        height: calc(100vh - 55px);
+        top: 60px;
+        height: calc(100vh - 60px);
         max-width: 100%;
     }
 
@@ -1690,13 +1725,16 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
 /* Small Devices - 375px */
 @media (max-width: 375px) {
     body {
-        padding: 52px 0 0 0;
+        padding: 58px 0 0 0;
     }
 
     .navbar {
-        height: 52px;
+        height: auto;
+        min-height: 58px;
         padding: 0 5px;
+        flex-wrap: wrap;
         justify-content: space-between;
+        gap: 5px;
     }
 
     .logo img {
@@ -1705,40 +1743,48 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     }
 
     .navbar > div:nth-child(2) {
-        margin: 0 5px;
+        margin: 0;
         flex: 1;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
+        min-width: 100%;
+        order: 3;
+        padding: 5px 0;
+        border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     .nav-links {
-        gap: 6px;
-        font-size: 0.7rem;
+        gap: 5px;
+        font-size: 0.65rem;
         display: flex;
-        justify-content: center;
-        flex-wrap: nowrap;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
     }
 
     .nav-links a {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         white-space: nowrap;
-        padding: 2px 4px;
+        padding: 2px 3px;
     }
 
     .nav-actions {
-        gap: 6px;
+        gap: 5px;
         display: flex;
         align-items: center;
         flex-shrink: 0;
+        order: 2;
     }
 
     .search-btn, .notification-btn {
         font-size: 1rem;
-        padding: 2px;
+        padding: 4px;
     }
 
     .notification-panel {
         width: 100%;
+        top: 58px;
+        height: calc(100vh - 58px);
     }
 
     .hero {
@@ -1913,13 +1959,18 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
 /* Extra Extra Small Devices - 320px */
 @media (max-width: 320px) {
     body {
-        padding: 50px 0 0 0;
+        padding: 55px 0 0 0;
     }
 
     .navbar {
-        height: 50px;
+        display: flex;
+        align-items: center;
+        height: auto;
+        min-height: 55px;
         padding: 0 4px;
+        flex-wrap: wrap;
         justify-content: space-between;
+        gap: 3px;
     }
 
     .logo img {
@@ -1928,24 +1979,31 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     }
 
     .navbar > div:nth-child(2) {
-        margin: 0 4px;
+        margin: 0;
         flex: 1;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
+        min-width: 100%;
+        order: 3;
+        padding: 4px 0;
+        border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     .nav-links {
         gap: 4px;
-        font-size: 0.65rem;
+        flex-direction: row;
+        margin: 0px;
+        font-size: 0.6rem;
         display: flex;
         justify-content: center;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
+        width: 100%;
     }
 
     .nav-links a {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         white-space: nowrap;
-        padding: 2px 3px;
+        padding: 1px 2px;
     }
 
     .nav-actions {
@@ -1953,16 +2011,18 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
         display: flex;
         align-items: center;
         flex-shrink: 0;
+        order: 2;
     }
 
     .search-btn, .notification-btn {
         font-size: 0.95rem;
-        padding: 2px;
+        padding: 3px;
     }
 
     .notification-panel {
         width: 100%;
-        top: 50px;
+        top: 55px;
+        height: calc(100vh - 55px);
     }
 
     .notification-panel-header {
