@@ -633,10 +633,11 @@ body{
 .search-dropdown {
     position: fixed;
     top: 60px;
-    right: 100px;
+    right: 10px;
     height: auto;
     max-height: 0;
-    width: 350px;
+    width: calc(100% - 20px);
+    max-width: 350px;
     background-color: var(--white);
     padding: 0;
     border: none;
@@ -1165,6 +1166,7 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     .navbar {
         padding: 0 12px;
         height: 70px;
+        justify-content: space-between;
     }
 
     .logo img {
@@ -1175,23 +1177,31 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     .navbar > div:nth-child(2) {
         margin: 0 12px;
         flex: 1;
+        display: flex;
+        justify-content: center;
     }
 
     .nav-links {
-        gap: 8px;
-        font-size: 0.85rem;
+        gap: 15px;
+        font-size: 0.9rem;
+        display: flex;
+        justify-content: center;
     }
 
     .nav-links a {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        padding: 5px 10px;
     }
 
     .nav-actions {
-        gap: 12px;
+        gap: 15px;
+        display: flex;
+        align-items: center;
     }
 
     .search-btn, .notification-btn {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
+        padding: 5px;
     }
 
     .notification-panel {
@@ -1324,24 +1334,45 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     .navbar {
         height: 60px;
         padding: 0 8px;
+        justify-content: space-between;
     }
 
     .logo img {
-        width: 45px;
-        height: 45px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .navbar > div:nth-child(2) {
+        margin: 0 8px;
+        flex: 1;
+        display: flex;
+        justify-content: center;
     }
 
     .nav-links {
-        gap: 5px;
-        font-size: 0.75rem;
+        gap: 12px;
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
     }
 
     .nav-links a {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        padding: 4px 6px;
     }
 
     .nav-actions {
-        gap: 8px;
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .search-btn, .notification-btn {
+        font-size: 1.2rem;
+        padding: 4px;
     }
 
     .hero {
@@ -1352,9 +1383,13 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
         font-size: 1.4rem;
     }
 
+    .hero .carousel-arrow {
+        display: none;
+    }
+
     .carousel-arrow {
-        width: 30px;
-        height: 30px;
+        width: 32px;
+        height: 32px;
         font-size: 1rem;
     }
 
@@ -1369,16 +1404,16 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     }
 
     .meal-name, .menu-item-name {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 
     .meal-price, .menu-item-price {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 
     .order-now-btn {
-        padding: 8px 12px;
-        font-size: 0.8rem;
+        padding: 10px 15px;
+        font-size: 0.85rem;
     }
 
     .container h2 {
@@ -1439,34 +1474,52 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     .navbar {
         height: 55px;
         padding: 0 6px;
+        justify-content: space-between;
     }
 
     .logo img {
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
+    }
+
+    .navbar > div:nth-child(2) {
+        margin: 0 6px;
+        flex: 1;
+        display: flex;
+        justify-content: center;
     }
 
     .nav-links {
-        gap: 3px;
-        font-size: 0.7rem;
+        gap: 8px;
+        font-size: 0.75rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
     }
 
     .nav-links a {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        padding: 3px 5px;
     }
 
     .nav-actions {
-        gap: 6px;
+        gap: 8px;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
     }
 
     .search-btn, .notification-btn {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        padding: 3px;
     }
 
     .notification-panel {
         width: 100%;
         top: 55px;
         height: calc(100vh - 55px);
+        max-width: 100%;
     }
 
     .hero {
@@ -1477,44 +1530,48 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
         font-size: 1.2rem;
     }
 
+    .hero .carousel-arrow {
+        display: none;
+    }
+
     .carousel-arrow {
         width: 28px;
         height: 28px;
-        font-size: 0.9rem;
+        font-size: 0.88rem;
         left: 5px;
         right: 5px;
     }
 
     .carousel-item, .menu-slider-item {
-        min-width: 180px;
-        max-width: 180px;
+        min-width: 175px;
+        max-width: 175px;
         padding: 10px;
     }
 
     .meal-image, .menu-item-image {
-        height: 110px;
+        height: 105px;
     }
 
     .meal-name, .menu-item-name {
-        font-size: 0.8rem;
+        font-size: 0.82rem;
     }
 
     .meal-price, .menu-item-price {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
     .order-now-btn {
-        padding: 6px 10px;
-        font-size: 0.75rem;
+        padding: 7px 11px;
+        font-size: 0.78rem;
     }
 
     .menu-container {
-        padding: 25px 4%;
+        padding: 30px 4%;
     }
 
     .menu-container h2 {
-        font-size: 1.5rem;
-        margin: 20px 0 15px 0;
+        font-size: 1.4rem;
+        margin: 18px 0 12px 0;
     }
 
     .container {
@@ -1522,13 +1579,13 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     }
 
     .container h2 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
+        font-size: 1.35rem;
+        margin-bottom: 18px;
     }
 
     .container p {
-        font-size: 0.85rem;
-        line-height: 1.6;
+        font-size: 0.9rem;
+        line-height: 1.65;
     }
 
     .booking-container {
@@ -1639,28 +1696,45 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     .navbar {
         height: 52px;
         padding: 0 5px;
+        justify-content: space-between;
     }
 
     .logo img {
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .navbar > div:nth-child(2) {
+        margin: 0 5px;
+        flex: 1;
+        display: flex;
+        justify-content: center;
     }
 
     .nav-links {
-        gap: 2px;
-        font-size: 0.65rem;
+        gap: 6px;
+        font-size: 0.7rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
     }
 
     .nav-links a {
-        font-size: 0.65rem;
+        font-size: 0.7rem;
+        white-space: nowrap;
+        padding: 2px 4px;
     }
 
     .nav-actions {
-        gap: 5px;
+        gap: 6px;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
     }
 
     .search-btn, .notification-btn {
-        font-size: 0.9rem;
+        font-size: 1rem;
+        padding: 2px;
     }
 
     .notification-panel {
@@ -1673,6 +1747,10 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
 
     .hero-overlay h1 {
         font-size: 1rem;
+    }
+
+    .hero .carousel-arrow {
+        display: none;
     }
 
     .carousel-arrow {
@@ -1841,28 +1919,45 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     .navbar {
         height: 50px;
         padding: 0 4px;
+        justify-content: space-between;
     }
 
     .logo img {
-        width: 35px;
-        height: 35px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .navbar > div:nth-child(2) {
+        margin: 0 4px;
+        flex: 1;
+        display: flex;
+        justify-content: center;
     }
 
     .nav-links {
-        gap: 1px;
-        font-size: 0.6rem;
+        gap: 4px;
+        font-size: 0.65rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
     }
 
     .nav-links a {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
+        white-space: nowrap;
+        padding: 2px 3px;
     }
 
     .nav-actions {
         gap: 4px;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
     }
 
     .search-btn, .notification-btn {
-        font-size: 0.8rem;
+        font-size: 0.95rem;
+        padding: 2px;
     }
 
     .notification-panel {
@@ -1882,10 +1977,14 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
         font-size: 0.9rem;
     }
 
+    .hero .carousel-arrow {
+        display: none;
+    }
+
     .carousel-arrow {
         width: 24px;
         height: 24px;
-        font-size: 0.7rem;
+        font-size: 0.72rem;
         left: 2px;
         right: 2px;
     }
@@ -1893,7 +1992,7 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     .carousel-item, .menu-slider-item {
         min-width: 150px;
         max-width: 150px;
-        padding: 6px;
+        padding: 7px;
     }
 
     .meal-image, .menu-item-image {
@@ -1901,39 +2000,39 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     }
 
     .meal-name, .menu-item-name {
-        font-size: 0.7rem;
+        font-size: 0.72rem;
     }
 
     .meal-price, .menu-item-price {
-        font-size: 0.85rem;
+        font-size: 0.87rem;
     }
 
     .order-now-btn {
-        padding: 5px 6px;
-        font-size: 0.65rem;
+        padding: 6px 7px;
+        font-size: 0.7rem;
     }
 
     .menu-container {
-        padding: 15px 2%;
+        padding: 18px 2%;
     }
 
     .menu-container h2 {
-        font-size: 1.1rem;
-        margin: 10px 0 8px 0;
+        font-size: 1.15rem;
+        margin: 12px 0 9px 0;
     }
 
     .container {
-        padding: 20px 2%;
+        padding: 22px 2%;
     }
 
     .container h2 {
-        font-size: 1rem;
-        margin-bottom: 8px;
+        font-size: 1.05rem;
+        margin-bottom: 10px;
     }
 
     .container p {
-        font-size: 0.75rem;
-        line-height: 1.4;
+        font-size: 0.78rem;
+        line-height: 1.5;
     }
 
     .booking-container {
