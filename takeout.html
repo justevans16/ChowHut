@@ -6,7 +6,7 @@
     <title>Ordering, Takeout and Live Tracking | Chow Hut</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles2.css">
     <link rel="icon" type="image/png" href="images/logo.png">
 </head>
 <body>
@@ -16,8 +16,8 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="takeout.html">Ordering and Takeout</a></li>
-            <li><a href="booking.html">Booking and Reservations</a></li>
+            <li><a href="takeout.html">Ordering &amp; Takeout</a></li>
+            <li><a href="booking.html">Booking &amp; Reservations</a></li>
         </ul>
         <div class="nav-actions">
             <button class="search-btn" aria-label="Search" onclick="toggleSearchPanel()">
@@ -31,8 +31,17 @@
                 <span>&#128276;</span>
                 <span class="notification-badge" id="notification-badge"></span>
             </button>
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
+
+    <ul class="mobile-nav-menu" id="mobile-nav-menu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="takeout.html">Ordering &amp; Takeout</a></li>
+        <li><a href="booking.html">Booking &amp; Reservations</a></li>
+    </ul>
 
     <!-- Notification Panel -->
     <aside class="notification-panel" id="notification-panel">
@@ -54,9 +63,7 @@
         
         <section class="menu-section" style="margin-bottom: 60px;">
             <h2 style="color: var(--primary-color); margin-bottom: 30px; text-align: center; font-size: 2rem;">Browse Our Full Menu</h2>
-            <button class="carousel-arrow left" id="takeout-carousel-left" onclick="scrollCarousel('left')">❮</button>
             <div id="takeout-menu" class="menu-slider"></div>
-            <button class="carousel-arrow right" id="takeout-carousel-right" onclick="scrollCarousel('right')">❯</button>
         </section>
 
         <section id="order-box" class="order-box" style="max-width:900px; margin: 10px auto 30px;">
@@ -109,5 +116,22 @@
         <p>Powered by <strong>Top<span style="color: goldenrod;">Notch</span>Innovations Ltd.</strong></p>
     </footer>
     <script src="script.js"></script>
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileNavMenu = document.getElementById('mobile-nav-menu');
+        if (hamburgerBtn && mobileNavMenu) {
+            hamburgerBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                hamburgerBtn.classList.toggle('open');
+                mobileNavMenu.classList.toggle('open');
+            });
+            document.addEventListener('click', function(e) {
+                if (!mobileNavMenu.contains(e.target) && e.target == hamburgerBtn) {
+                    hamburgerBtn.classList.remove('open');
+                    mobileNavMenu.classList.remove('open');
+                }
+            });
+        }
+    </script>
 </body>
 </html>

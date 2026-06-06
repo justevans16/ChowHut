@@ -1,6 +1,6 @@
 # Chow Hut Restaurant | Order & Booking System
 
-A full-stack restaurant web application for takeout orders, table reservations, live tracking, and admin menu management.
+A full-stack restaurant web application for takeout orders, table reservations and admin menu management.
 
 ## 📂 Project Structure
 
