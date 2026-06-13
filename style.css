@@ -1158,189 +1158,7 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
 }
 
 /* Responsive Media Queries */
-@media (max-width: 768px) {
-    body {
-        padding: 70px 0 0 0;
-    }
-
-    .navbar {
-        padding: 0 10px;
-        height: auto;
-        min-height: 70px;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 10px;
-    }
-
-    .logo img {
-        width: 50px;
-        height: 50px;
-    }
-
-    .navbar > div:nth-child(2) {
-        margin: 0;
-        flex: 1;
-        display: flex;
-        justify-content: flex-start;
-        min-width: 100%;
-        order: 3;
-        padding: 8px 0;
-        border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .nav-links {
-        gap: 10px;
-        font-size: 0.85rem;
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        width: 100%;
-    }
-
-    .nav-links a {
-        font-size: 0.85rem;
-        padding: 4px 8px;
-        white-space: nowrap;
-    }
-
-    .nav-actions {
-        gap: 12px;
-        display: flex;
-        align-items: center;
-        order: 2;
-    }
-
-    .search-btn, .notification-btn {
-        font-size: 1.2rem;
-        padding: 6px;
-    }
-
-    .notification-panel {
-        width: 280px;
-        top: 70px;
-        height: calc(100vh - 70px);
-    }
-
-    .hero {
-        height: 40vh;
-    }
-
-    .hero-overlay h1 {
-        font-size: 1.8rem;
-    }
-
-    .carousel-arrow {
-        width: 35px;
-        height: 35px;
-        font-size: 1.2rem;
-    }
-
-    .menu-container {
-        padding: 40px 5%;
-    }
-
-    .menu-container h2 {
-        font-size: 1.8rem;
-    }
-
-    .hot-picks-carousel {
-        padding: 15px 10px;
-    }
-
-    .carousel-item, .menu-slider-item {
-        min-width: 240px;
-        max-width: 240px;
-        padding: 15px;
-    }
-
-    .meal-image, .menu-item-image {
-        height: 140px;
-    }
-
-    .container {
-        padding: 40px 5%;
-    }
-
-    .container h2 {
-        font-size: 1.8rem;
-    }
-
-    .container p {
-        font-size: 0.95rem;
-    }
-
-    .booking-container {
-        padding: 40px 5%;
-    }
-
-    #admin-panel {
-        padding: 20px;
-        max-width: 100%;
-    }
-
-    #admin-panel h3 {
-        font-size: 1.1rem;
-    }
-
-    .admin-category-title {
-        font-size: 1rem;
-    }
-
-    .admin-item {
-        padding: 10px;
-        font-size: 0.9rem;
-    }
-
-    .admin-item-price {
-        font-size: 0.9rem;
-        min-width: 70px;
-    }
-
-    .payment-container {
-        padding: 20px 5% !important;
-    }
-
-    #timer {
-        font-size: 2.5rem !important;
-    }
-
-    .payment-card {
-        padding: 20px !important;
-    }
-
-    #order-summary, .bank-details {
-        padding: 15px !important;
-        font-size: 0.9rem;
-    }
-
-    .bank-details p {
-        margin: 8px 0 !important;
-    }
-
-    .full-btn, .order-now-btn, .btn {
-        padding: 10px 15px;
-        font-size: 0.95rem;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    .form-group input, .form-group select {
-        padding: 8px;
-        font-size: 0.9rem;
-    }
-
-    footer {
-        padding: 20px 5%;
-    }
-
-    footer p {
-        font-size: 0.85rem;
-        margin: 5px 0;
-    }
-}
-
+/* ── Hamburger button (hidden on desktop) ── */
 .hamburger-btn {
     display: none;
     flex-direction: column;
@@ -1402,19 +1220,20 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
 .mobile-nav-menu li a:hover,
 .mobile-nav-menu li a.active { color: var(--green-gold); background: rgba(255,220,100,0.1); }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     body {
         padding: 65px 0 0 0;
     }
 
+    /* Navbar: single row — logo | icons + hamburger */
     .navbar {
-        height: auto;
+        height: 65px;
         min-height: 65px;
         padding: 0 12px;
         flex-wrap: nowrap;
         justify-content: space-between;
-        gap: 8px;
         align-items: center;
+        gap: 8px;
     }
 
     .logo img {
@@ -1422,14 +1241,17 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
         height: 44px;
     }
 
+    /* Hide inline links — hamburger takes over */
+    .nav-links { display: none; }
 
-    .nav-links {display: none; }
-    .hamburger-btn {display: flex; }
+    /* Show hamburger */
+    .hamburger-btn { display: flex; }
 
+    /* Icons + hamburger sit together on the right */
     .nav-actions {
-        gap: 6px;
         display: flex;
         align-items: center;
+        gap: 6px;
         flex-shrink: 0;
         order: unset;
     }
@@ -1532,57 +1354,29 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
 /* Extra Small Devices - 425px */
 @media (max-width: 425px) {
     body {
-        padding: 60px 0 0 0;
+        padding: 62px 0 0 0;
     }
 
     .navbar {
-        height: auto;
-        min-height: 60px;
-        padding: 0 6px;
-        flex-wrap: wrap;
+        height: 62px;
+        min-height: 62px;
+        padding: 0 10px;
+        flex-wrap: nowrap;
         justify-content: space-between;
+        align-items: center;
         gap: 6px;
     }
+
+    .mobile-nav-menu { top: 62px; }
 
     .logo img {
-        width: 38px;
-        height: 38px;
-    }
-
-    .navbar > div:nth-child(2) {
-        margin: 0;
-        flex: 1;
-        display: flex;
-        justify-content: flex-start;
-        min-width: 100%;
-        order: 3;
-        padding: 6px 0;
-        border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .nav-links {
-        gap: 6px;
-        font-size: 0.7rem;
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        width: 100%;
-        align-items: center;
-    }
-
-    .nav-links a {
-        font-size: 0.7rem;
-        white-space: nowrap;
-        padding: 2px 4px;
-        word-break: break-word;
+        width: 40px;
+        height: 40px;
     }
 
     .nav-actions {
-        gap: 6px;
-        display: flex;
-        align-items: center;
+        gap: 5px;
         flex-shrink: 0;
-        order: 2;
     }
 
     .search-btn, .notification-btn {
@@ -1769,51 +1563,25 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     }
 
     .navbar {
-        height: auto;
+        height: 58px;
         min-height: 58px;
-        padding: 0 5px;
-        flex-wrap: wrap;
+        padding: 0 8px;
+        flex-wrap: nowrap;
         justify-content: space-between;
+        align-items: center;
         gap: 5px;
     }
+
+    .mobile-nav-menu { top: 58px; }
 
     .logo img {
         width: 36px;
         height: 36px;
     }
 
-    .navbar > div:nth-child(2) {
-        margin: 0;
-        flex: 1;
-        display: flex;
-        justify-content: flex-start;
-        min-width: 100%;
-        order: 3;
-        padding: 5px 0;
-        border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .nav-links {
-        gap: 5px;
-        font-size: 0.65rem;
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        width: 100%;
-    }
-
-    .nav-links a {
-        font-size: 0.65rem;
-        white-space: nowrap;
-        padding: 2px 3px;
-    }
-
     .nav-actions {
         gap: 5px;
-        display: flex;
-        align-items: center;
         flex-shrink: 0;
-        order: 2;
     }
 
     .search-btn, .notification-btn {
@@ -2003,55 +1771,25 @@ footer p { font-size: 0.95rem; opacity: 0.9; }
     }
 
     .navbar {
-        display: flex;
-        align-items: center;
-        height: auto;
+        height: 55px;
         min-height: 55px;
-        padding: 0 4px;
-        flex-wrap: wrap;
+        padding: 0 6px;
+        flex-wrap: nowrap;
         justify-content: space-between;
-        gap: 3px;
+        align-items: center;
+        gap: 4px;
     }
+
+    .mobile-nav-menu { top: 55px; }
 
     .logo img {
         width: 34px;
         height: 34px;
     }
 
-    .navbar > div:nth-child(2) {
-        margin: 0;
-        flex: 1;
-        display: flex;
-        justify-content: flex-start;
-        min-width: 100%;
-        order: 3;
-        padding: 4px 0;
-        border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .nav-links {
-        gap: 4px;
-        flex-direction: row;
-        margin: 0px;
-        font-size: 0.6rem;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        width: 100%;
-    }
-
-    .nav-links a {
-        font-size: 0.6rem;
-        white-space: nowrap;
-        padding: 1px 2px;
-    }
-
     .nav-actions {
         gap: 4px;
-        display: flex;
-        align-items: center;
         flex-shrink: 0;
-        order: 2;
     }
 
     .search-btn, .notification-btn {
