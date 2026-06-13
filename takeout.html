@@ -6,7 +6,7 @@
     <title>Ordering, Takeout and Live Tracking | Chow Hut</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/logo.png">
 </head>
 <body>
@@ -31,6 +31,7 @@
                 <span>&#128276;</span>
                 <span class="notification-badge" id="notification-badge"></span>
             </button>
+
             <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
@@ -126,7 +127,7 @@
                 mobileNavMenu.classList.toggle('open');
             });
             document.addEventListener('click', function(e) {
-                if (!mobileNavMenu.contains(e.target) && e.target == hamburgerBtn) {
+                if (!mobileNavMenu.contains(e.target) && e.target !== hamburgerBtn) {
                     hamburgerBtn.classList.remove('open');
                     mobileNavMenu.classList.remove('open');
                 }

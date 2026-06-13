@@ -133,7 +133,7 @@
                 mobileNavMenu.classList.toggle('open');
             });
             document.addEventListener('click', function(e) {
-                if (!mobileNavMenu.contains(e.target) && e.target == hamburgerBtn) {
+                if (!mobileNavMenu.contains(e.target) && e.target !== hamburgerBtn) {
                     hamburgerBtn.classList.remove('open');
                     mobileNavMenu.classList.remove('open');
                 }
